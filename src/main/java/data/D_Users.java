@@ -21,15 +21,17 @@ public class D_Users {
         ResultSet rs;
         
         try {
-            ps = con.prepareStatement("select * from users where email = ? and pass = ?");
+            ps = con.prepareStatement("select * from users where email = ? or nameUser = ? and pass = ?");
             ps.setString(1, user.getEmail());
-            ps.setString(2, user.getPass());
+            ps.setString(2, user.getEmail());
+            ps.setString(3, user.getPass());
             
             rs = ps.executeQuery();
             
             if (rs.next()) {
                 user.setId(rs.getInt(1));
                 user.setNameUser(rs.getString(2));
+                user.setEmail(rs.getString(3));
                 user.setRol(rs.getInt(5));
             } else {
                 return null;

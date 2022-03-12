@@ -2,6 +2,9 @@ package views;
 
 import business.B_Users;
 import entities.Users;
+import java.awt.Color;
+import java.awt.MouseInfo;
+import java.awt.Point;
 
 /**
  *
@@ -11,10 +14,16 @@ public class frmLogin extends javax.swing.JFrame {
 
     Users user = new Users();
     B_Users business = new B_Users();
-    
+    int x, y;
+
     //Creates new form frmLogin
     public frmLogin() {
         initComponents();
+        lblExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblError.setText("");
+        this.setLocationRelativeTo(null);
+
+        System.out.println("Result: " + business.B_listUsers());
     }
 
     /**
@@ -26,21 +35,224 @@ public class frmLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        txtPass = new javax.swing.JPasswordField();
+        btnSignIn = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        pnlToMoveFrm = new javax.swing.JPanel();
+        lblExit = new javax.swing.JLabel();
+        lblError = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
+
+        jPanel1.setBackground(new java.awt.Color(0, 204, 153));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("F:\\NetBeansProjects\\systemPatientControl\\src\\main\\java\\images\\codeprod_logo_v0-0-3-01.png")); // NOI18N
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("F:\\NetBeansProjects\\systemPatientControl\\src\\main\\java\\images\\bloquear_candado.png")); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("MADE TOMMY", 1, 14)); // NOI18N
+        jLabel4.setText("Email / Name User");
+
+        jLabel5.setFont(new java.awt.Font("MADE TOMMY", 1, 14)); // NOI18N
+        jLabel5.setText("Password");
+
+        txtEmail.setFont(new java.awt.Font("MADE TOMMY", 0, 18)); // NOI18N
+
+        txtPass.setFont(new java.awt.Font("MADE TOMMY", 0, 18)); // NOI18N
+
+        btnSignIn.setBackground(new java.awt.Color(0, 102, 0));
+        btnSignIn.setFont(new java.awt.Font("MADE TOMMY", 1, 18)); // NOI18N
+        btnSignIn.setForeground(new java.awt.Color(255, 255, 255));
+        btnSignIn.setText("SIGN IN");
+        btnSignIn.setBorder(null);
+        btnSignIn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSignInMouseClicked(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("MADE TOMMY", 1, 36)); // NOI18N
+        jLabel6.setText("LOG IN");
+
+        pnlToMoveFrm.setBackground(new java.awt.Color(0, 204, 204));
+        pnlToMoveFrm.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                pnlToMoveFrmMouseDragged(evt);
+            }
+        });
+        pnlToMoveFrm.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                pnlToMoveFrmMousePressed(evt);
+            }
+        });
+
+        lblExit.setFont(new java.awt.Font("MADE TOMMY", 1, 36)); // NOI18N
+        lblExit.setForeground(new java.awt.Color(255, 0, 0));
+        lblExit.setText("X");
+        lblExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblExitMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlToMoveFrmLayout = new javax.swing.GroupLayout(pnlToMoveFrm);
+        pnlToMoveFrm.setLayout(pnlToMoveFrmLayout);
+        pnlToMoveFrmLayout.setHorizontalGroup(
+            pnlToMoveFrmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlToMoveFrmLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblExit)
+                .addGap(24, 24, 24))
+        );
+        pnlToMoveFrmLayout.setVerticalGroup(
+            pnlToMoveFrmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlToMoveFrmLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblExit)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        lblError.setFont(new java.awt.Font("MADE TOMMY", 1, 14)); // NOI18N
+        lblError.setForeground(new java.awt.Color(204, 0, 0));
+        lblError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblError.setText("Email / Name User");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(jLabel1)
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel6))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jLabel5))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(315, 315, 315)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnSignIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblError, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(pnlToMoveFrm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(pnlToMoveFrm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel6)))
+                .addGap(28, 28, 28)
+                .addComponent(jLabel4)
+                .addGap(6, 6, 6)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addGap(6, 6, 6)
+                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(btnSignIn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblError)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 502, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void pnlToMoveFrmMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlToMoveFrmMousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_pnlToMoveFrmMousePressed
+
+    private void pnlToMoveFrmMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlToMoveFrmMouseDragged
+        Point p = MouseInfo.getPointerInfo().getLocation();
+        setLocation(p.x - x, p.y - y);
+    }//GEN-LAST:event_pnlToMoveFrmMouseDragged
+
+    private void lblExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_lblExitMouseClicked
+
+    private void btnSignInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignInMouseClicked
+        lblError.setText(signInUser());
+    }//GEN-LAST:event_btnSignInMouseClicked
+
+    public String signInUser() {
+        if (txtEmail.getText().equals("") || txtPass.getText().equals("")) {
+            return "Insert all fields!";
+        } else {
+            this.user.setEmail(txtEmail.getText());
+            this.user.setPass(txtPass.getText());
+
+            this.user = business.B_loginUser(user);
+
+            if (user == null) {
+                return "User not found";
+            } else {
+                if (user.getRol() == 0) {
+                    frmAdmHome frm = new frmAdmHome();
+                    frm.setVisible(true);
+                }
+                
+                if (user.getRol() == 1) {
+                    frmRcHome frm = new frmRcHome();
+                    frm.setVisible(true);
+                }
+                
+                if (user.getRol() == 2) {
+                    frmDocHome frm = new frmDocHome();
+                    frm.setVisible(true);
+                }
+                
+                this.dispose();
+                lblError.setForeground(Color.green);
+                return "Success!";
+            }
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -78,5 +290,17 @@ public class frmLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSignIn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblError;
+    private javax.swing.JLabel lblExit;
+    private javax.swing.JPanel pnlToMoveFrm;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JPasswordField txtPass;
     // End of variables declaration//GEN-END:variables
 }
