@@ -44,5 +44,9 @@ public class TypeTest {
         this.state = state;
         this.typeTest = typeTest;
     }
-    
+
+    @Override
+    public String toString() {
+        return typeTest;
+    }
 }

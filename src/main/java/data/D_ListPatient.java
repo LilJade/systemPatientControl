@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 /**
@@ -17,7 +18,7 @@ public class D_ListPatient {
 
     db_connection db = new db_connection();
 
-    public ArrayList<ListPatient> listTests() {
+    public ArrayList<ListPatient> listPatients() {
         Connection con = db.connectDB();
         PreparedStatement ps;
         ResultSet rs;
@@ -56,13 +57,12 @@ public class D_ListPatient {
         PreparedStatement ps;
 
         try {
-            ps = con.prepareStatement("insert into listPatient(datefield, position, namePatient, descriptionDate, idTypeTest) values(?, ?, ?, ?, ?)");
+            ps = con.prepareStatement("insert into listPatient(position, namePatient, descriptionDate, idTypeTest) values(?, ?, ?, ?)");
 
-            ps.setTimestamp(1, listPatient.getDatefield());
-            ps.setInt(2, listPatient.getPosition());
-            ps.setString(3, listPatient.getNamePatient());
-            ps.setString(4, listPatient.getDescriptionDate());
-            ps.setInt(5, listPatient.getIdTypeTest().getId());
+            ps.setInt(1, listPatient.getPosition());
+            ps.setString(2, listPatient.getNamePatient());
+            ps.setString(3, listPatient.getDescriptionDate());
+            ps.setInt(4, listPatient.getIdTypeTest().getId());
 
             ps.executeUpdate();
 
@@ -78,14 +78,13 @@ public class D_ListPatient {
         PreparedStatement ps;
 
         try {
-            ps = con.prepareStatement("update listPatient set datefield=?, position=?, namePatient=?, descriptionDate=?, idTypeTest=? where id=?");
+            ps = con.prepareStatement("update listPatient set position=?, namePatient=?, descriptionDate=?, idTypeTest=? where id=?");
 
-            ps.setTimestamp(1, listPatient.getDatefield());
-            ps.setInt(2, listPatient.getPosition());
-            ps.setString(3, listPatient.getNamePatient());
-            ps.setString(4, listPatient.getDescriptionDate());
-            ps.setInt(5, listPatient.getIdTypeTest().getId());
-            ps.setInt(6, listPatient.getId());
+            ps.setInt(1, listPatient.getPosition());
+            ps.setString(2, listPatient.getNamePatient());
+            ps.setString(3, listPatient.getDescriptionDate());
+            ps.setInt(4, listPatient.getIdTypeTest().getId());
+            ps.setInt(5, listPatient.getId());
 
             ps.executeUpdate();
 
@@ -116,5 +115,57 @@ public class D_ListPatient {
         }
 
         return false;
+    }
+    
+    public Timestamp lastDate() {
+        Connection con = db.connectDB();
+        PreparedStatement ps;
+        ResultSet rs;
+
+        Timestamp lastDate = null;
+        
+        try {
+            ps = con.prepareStatement("select datefield from listPatient order by datefield desc limit 1");
+            rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                lastDate = rs.getTimestamp("datefield");
+            } else {
+                return null;
+            }
+
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            System.out.println("Error trying to consult last date of patients: " + e.getMessage());
+        }
+
+        return lastDate;
+    }
+    
+        public int lastPosition() {
+        Connection con = db.connectDB();
+        PreparedStatement ps;
+        ResultSet rs;
+
+        int lastPosition = 0;
+        
+        try {
+            ps = con.prepareStatement("select position from listPatient order by position desc limit 1");
+            rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                lastPosition = rs.getInt("position");
+            } else {
+                return 0;
+            }
+
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            System.out.println("Error trying to consult last position of patients: " + e.getMessage());
+        }
+
+        return lastPosition;
     }
 }
