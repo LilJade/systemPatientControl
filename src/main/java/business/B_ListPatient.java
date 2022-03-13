@@ -42,4 +42,19 @@ public class B_ListPatient {
     public int B_lastPosition() {
         return data.lastPosition();
     }
+    
+    public ArrayList B_listPatientsToDoc() {
+        ArrayList list = data.listPatientsToDoc();
+        
+        if (list == null) {
+            System.out.println("Error al cargar la lista de pacientes!");
+            return null;
+        }
+        
+        return list;
+    }
+
+    public boolean B_docUpdatePatient(ListPatient listPatientC, ListPatient lisPatientN) {
+        return data.docUpdateListPatient(listPatientC, lisPatientN);
+    }
 }
