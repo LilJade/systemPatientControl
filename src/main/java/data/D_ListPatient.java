@@ -26,7 +26,7 @@ public class D_ListPatient {
         ListPatient listPatient;
 
         try {
-            ps = con.prepareStatement("select * from listPatient");
+            ps = con.prepareStatement("select * from listPatient where datefield >= curdate()");
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -153,7 +153,7 @@ public class D_ListPatient {
         int lastPosition = 0;
 
         try {
-            ps = con.prepareStatement("select position from listPatient order by position desc limit 1");
+            ps = con.prepareStatement("select position from listPatient order by datefield desc limit 1");
             rs = ps.executeQuery();
 
             if (rs.next()) {

@@ -277,7 +277,7 @@ public class jdAddPacient extends javax.swing.JDialog {
         if (lastDateRegistered == null) {
             listPatient.setPosition(1);
         }else if (now.getDay() != lastDateRegistered.getDay()) {
-            listPatient.setPosition(0);
+            listPatient.setPosition(1);
         } else {
             listPatient.setPosition(business.B_lastPosition() + 1);
         }
