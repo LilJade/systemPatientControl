@@ -269,11 +269,14 @@ public class jdAddPacient extends javax.swing.JDialog {
         listPatient.setNamePatient(txtNamePatient.getText());
         listPatient.setDescriptionDate(txtDescription.getText());
         listPatient.setIdTypeTest((TypeTest) cmbTypeTest.getSelectedItem());
+        listPatient.setState(1);
         
         Timestamp now = new Timestamp(System.currentTimeMillis());
         Timestamp lastDateRegistered = business.B_lastDate();
         
-        if (now.getDay() != lastDateRegistered.getDay()) {
+        if (lastDateRegistered == null) {
+            listPatient.setPosition(1);
+        }else if (now.getDay() != lastDateRegistered.getDay()) {
             listPatient.setPosition(0);
         } else {
             listPatient.setPosition(business.B_lastPosition() + 1);

@@ -24,7 +24,7 @@ public class frmRcHome extends javax.swing.JFrame {
     }
     
     public void listPatients() {
-        String titulos[] = {"Id", "Fecha", "Nombres Pacientes", "Posición", "Descripcion", "Tipo de Cita", "Id cita"};
+        String titulos[] = {"Id", "Fecha", "Nombres Pacientes", "Posición", "Descripcion", "Tipo de Cita", "Id cita", "Estado"};
         DefaultTableModel df = new DefaultTableModel(null, titulos) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -35,7 +35,7 @@ public class frmRcHome extends javax.swing.JFrame {
         ArrayList<ListPatient> list = business.B_listPatients();
         Iterator i = list.iterator();
         
-        String columns[] = new String[7];
+        String columns[] = new String[8];
         
         while (i.hasNext()) {
             ListPatient patient;
@@ -48,7 +48,8 @@ public class frmRcHome extends javax.swing.JFrame {
             columns[4] = patient.getDescriptionDate();
             columns[5] = patient.getIdTypeTest().getTypeTest();
             columns[6] = String.valueOf(patient.getIdTypeTest().getId());
-            
+            columns[7] = String.valueOf(patient.getState());
+
             df.addRow(columns);
         }
         

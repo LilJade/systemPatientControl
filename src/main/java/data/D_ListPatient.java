@@ -32,6 +32,7 @@ public class D_ListPatient {
             while (rs.next()) {
                 listPatient = new ListPatient();
                 listPatient.setId(rs.getInt("id"));
+                listPatient.setState(rs.getInt("state"));
                 listPatient.setDatefield(rs.getTimestamp("datefield"));
                 listPatient.setPosition(rs.getInt("position"));
                 listPatient.setNamePatient(rs.getString("namePatient"));
@@ -57,12 +58,13 @@ public class D_ListPatient {
         PreparedStatement ps;
 
         try {
-            ps = con.prepareStatement("insert into listPatient(position, namePatient, descriptionDate, idTypeTest) values(?, ?, ?, ?)");
+            ps = con.prepareStatement("insert into listPatient(position, namePatient, descriptionDate, idTypeTest, state) values(?, ?, ?, ?, ?)");
 
             ps.setInt(1, listPatient.getPosition());
             ps.setString(2, listPatient.getNamePatient());
             ps.setString(3, listPatient.getDescriptionDate());
             ps.setInt(4, listPatient.getIdTypeTest().getId());
+            ps.setInt(5, listPatient.getState());
 
             ps.executeUpdate();
 

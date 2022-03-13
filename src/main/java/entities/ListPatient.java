@@ -7,7 +7,7 @@ import java.sql.Timestamp;
  * @author LilJade
  */
 public class ListPatient {
-    private int id, position;
+    private int id, position, state;
     private Timestamp datefield;
     private String namePatient, descriptionDate;
     private TypeTest idTypeTest;
@@ -26,6 +26,14 @@ public class ListPatient {
 
     public void setPosition(int position) {
         this.position = position;
+    }
+    
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
     }
 
     public Timestamp getDatefield() {
@@ -62,9 +70,10 @@ public class ListPatient {
 
     public ListPatient() { }
     
-    public ListPatient(int id, int position, Timestamp datefield, String namePatient, String descriptionDate, TypeTest idTypeTest) {
+    public ListPatient(int id, int position, int state, Timestamp datefield, String namePatient, String descriptionDate, TypeTest idTypeTest) {
         this.id = id;
         this.position = position;
+        this.state = state;
         this.datefield = datefield;
         this.namePatient = namePatient;
         this.descriptionDate = descriptionDate;
